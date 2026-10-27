@@ -1,0 +1,63 @@
+﻿@section ProductListCss{
+    <link rel="stylesheet" href="~/css/men.css" />
+}
+@model ProductListVm
+    <nav>
+        <ul>
+            <li class="primary-nav">
+                <img src="~/Images/img-DS.png" alt="logo" />
+                <a href="@Url.Action("Index","Home")">Nurlanın Dükanı</a>
+            </li>
+            <li class="secondary-nav">
+                <a href="HTML/checkout.html">
+                    <i class="fas fa-shopping-cart"></i> Səbət
+                </a>
+            </li>
+            <li class="secondary-nav"><a href="@Url.Action("List","Product",new { categoryId = (int)ProductCategoryEnum.Women })">Qadın</a></li>
+            <li class="secondary-nav"><a href="@Url.Action("List","Product",new { categoryId = (int)ProductCategoryEnum.Men })">Kişi</a></li>
+            <li class="secondary-nav">
+                <a href="@Url.Action("Index","About")">Nurlan kimdir?</a>
+            </li>
+        </ul>
+    </nav>
+    <section class="items">
+        <h1>@Model.ProductCategory.Name</h1>
+        <div class="row">
+            <div class="col">
+                <h2>Sırala</h2>
+
+                <h3>Marka</h3>
+                <hr />
+                @foreach (var brand in Model.Brands)
+                {
+                    <input type="radio" name="brand" id="" />@brand.Name <br />
+                }
+                <h3>Ölçü</h3>
+                <hr />
+                @foreach (var size in Model.Sizes)
+                {
+                    <input type="radio" name="size" id="" />@size.Name <br />
+                }
+                <h3>Rəng</h3>
+                <hr />
+                @foreach (var color in Model.Colors)
+                {
+                    <input type="radio" name="color" id="" />@color.Name <br />
+                }
+            </div>
+            <div class="col2">
+                <img class="header-img" src="~/uploads/categories/@Model.ProductCategory.BackImage" alt="" />
+                <div class="items2">
+                    @foreach (var product in Model.Products)
+                    {
+                        <div class="card">
+                            <img src="~/uploads/products/@product.Image" alt="Shoe" style="width:100%" data-src>
+                            <h3>@product.Name</h3>
+                            <p class="price">$@product.Price</p>
+                            <p><a href="./info.html">Ətraflı</a></p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>

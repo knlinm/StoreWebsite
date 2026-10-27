@@ -1,0 +1,127 @@
+﻿@model HomeVm
+<header id="home">
+    <nav>
+        <ul>
+            <li class="primary-nav">
+                <img src="~/Images/img-DS.png" alt="logo" />
+                <a href="@Url.Action("Index","Home")">Nurlanın Dükanı</a>
+            </li>
+            <li class="secondary-nav">
+                <a href="HTML/checkout.html">
+                    <i class="fas fa-shopping-cart"></i> Səbət
+                </a>
+            </li>
+            <li class="secondary-nav"><a href="@Url.Action("List","Product",new { categoryId = (int)ProductCategoryEnum.Women })">Qadın</a></li>
+            <li class="secondary-nav"><a href="@Url.Action("List","Product",new { categoryId = (int)ProductCategoryEnum.Men })">Kişi</a></li>
+            <li class="secondary-nav">
+                <a href="@Url.Action("Index","About")">Nurlan kimdir?</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="pxtext">
+        <span class="border">
+            Gəlin görək mandalin 50 qəpiyə!
+        </span>
+        <p><a href="HTML/men.html">Alış-veriş et</a></p>
+    </div>
+</header>
+<section>
+    <div class="row"
+         style="width: 80%;
+      margin: 0 auto;">
+        @foreach (var productCategory in Model.ProductCategories)
+        {
+            <div class="col">
+                <div class="overlay-image">
+                    <a href="@Url.Action("List","Product",new {categoryId = productCategory.ProductCategoryDtoId})">
+                        <img class="image" src="~/uploads/categories/@productCategory.BackImage" alt="Alt text" />
+                        <div class="normal">
+                            <div class="text" style="text-transform:uppercase">@productCategory.Name</div>
+                        </div>
+                        <div class="hover">
+                            <img class="image"
+                                 src="~/uploads/categories/@productCategory.HoverImage"
+                                 alt="Alt text hover" />
+                            <div class="text" style="text-transform:uppercase">@productCategory.Name</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        }
+
+    </div>
+</section>
+<section class="preview">
+    <h2 align="center">Ən çox satılanlar</h2>
+    <div class="row"
+         style="  width: 80%;
+      margin: 0 auto;">
+        @foreach (var brand in Model.Brands)
+        {
+            <figure class="item">
+                <a href="HTML/info.html">
+                    <img src="~/uploads/brands/@brand.Image" alt="" width="100%" />
+                    <figcaption>@brand.Name</figcaption>
+                </a>
+            </figure>
+        }
+
+    </div>
+</section>
+
+
+<footer>
+    <div class="row foot">
+        <div class="col">
+            <h1>Downy Shoes</h1>
+            <p>
+                Official <a href="https://www.nike.com/xf/en_gb/">Nike</a> Partner
+            </p>
+        </div>
+        <div class="col">
+            <h2>Links</h2>
+            <ul>
+                <li><a href="./HTML/shop.html">Catalog</a></li>
+
+                <li><a href="./HTML/Contact-us.html">Contact us</a></li>
+                <li><a href="./HTML/survey.html">Take a survey</a></li>
+                <li>
+                    <a href="./HTML/terms-and-conditions.html">Terms and conditions</a>
+                </li>
+                <li>
+                    <a href="./HTML/refund-policy.html">Refund Policy</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col">
+            <h2>
+                Copyright <sup>©</sup>
+                <a href="https://www.codepen.io/jeetg57" target="_blank">Jeet Gohil</a>
+            </h2>
+        </div>
+    </div>
+</footer>
+<footer id="footer-social">
+    <ul class="row foot-icons" style="list-style-type: none;">
+        <li>
+            <a href="https://twitter.com/JeetGohil_" target="_blank">
+                <i class="fab fa-twitter fa-3x"></i>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.facebook.com/MarioJT99" target="_blank">
+                <i class="fab fa-facebook fa-3x"></i>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.codepen.io/jeetg57" target="_blank">
+                <i class="fab fa-codepen fa-3x"></i>
+            </a>
+        </li>
+        <li>
+            <a href="https://github.com/Jeetg57" target="_blank">
+                <i class="fab fa-github fa-3x"></i>
+            </a>
+        </li>
+    </ul>
+</footer>
